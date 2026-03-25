@@ -47,23 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // 3. MANEJO DEL FORMULARIO DE CONTACTO (MOCKUP)
-    // Simula el envío del formulario para que el estudiante vea cómo capturar datos
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Evita que la página se recargue
-
-            // Capturar los valores
-            const name = contactForm.querySelector('input[type="text"]').value;
-            const email = contactForm.querySelector('input[type="email"]').value;
-
-            // Mostrar un mensaje de éxito sencillo
-            alert(`¡Gracias ${name}! Tu mensaje ha sido "enviado" (esto es una simulación). Me pondré en contacto contigo en ${email}.`);
-            
-            // Limpiar el formulario
-            contactForm.reset();
-        });
-    }
+    // Se ha eliminado el controlador manual para permitir que Formspree gestione el envío.
 
 
     // 4. ANIMACIÓN EXTRA: EFECTO GLOW DINÁMICO
@@ -77,6 +61,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Podemos usar variables CSS para mover efectos si quisiéramos algo más avanzado
             // Para este ejemplo, la transición CSS ya maneja el hover básico.
+        });
+    });
+
+    // 5. TABS DE SOLUCIONES TECNOLÓGICAS
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remover activo de todos
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+
+            // Agregar activo al seleccionado
+            btn.classList.add('active');
+            const targetId = btn.getAttribute('data-tab');
+            document.getElementById(targetId).classList.add('active');
         });
     });
 

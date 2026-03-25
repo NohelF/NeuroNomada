@@ -33,7 +33,10 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3, .mono {
+h1,
+h2,
+h3,
+.mono {
     font-family: 'Roboto Mono', monospace;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -78,8 +81,9 @@ section {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.7), var(--bg-main)),
-                url('hero_bg.png'); /* Usando la imagen generada */
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8), var(--bg-main)),
+        url('https://res.cloudinary.com/drskhmrtc/image/upload/v1773971359/ChatGPT_Image_19_mar_2026_08_46_58_p.m._tcp45c.png');
+    /* Usando la imagen generada */
     background-size: cover;
     background-position: center;
     position: relative;
@@ -216,6 +220,11 @@ section {
     box-shadow: 0 0 40px rgba(0, 245, 255, 0.2);
 }
 
+.project-card:hover .project-img img,
+.project-card:hover .project-img video {
+    transform: scale(1.1) !important;
+}
+
 .project-content {
     padding: 30px;
 }
@@ -256,9 +265,17 @@ section {
 }
 
 @keyframes glow-pulse {
-    0% { box-shadow: 0 0 10px rgba(57, 255, 20, 0.4); }
-    50% { box-shadow: 0 0 30px rgba(57, 255, 20, 0.7); }
-    100% { box-shadow: 0 0 10px rgba(57, 255, 20, 0.4); }
+    0% {
+        box-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(57, 255, 20, 0.7);
+    }
+
+    100% {
+        box-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+    }
 }
 
 /* 8. CONTACTO */
@@ -274,7 +291,8 @@ section {
     gap: 20px;
 }
 
-.contact-form input, .contact-form textarea {
+.contact-form input,
+.contact-form textarea {
     padding: 15px;
     background: #1A1A1A;
     border: 1px solid #333;
@@ -282,7 +300,8 @@ section {
     border-radius: 5px;
 }
 
-.contact-form input:focus, .contact-form textarea:focus {
+.contact-form input:focus,
+.contact-form textarea:focus {
     outline: none;
     border-color: var(--accent-neon);
     box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
@@ -330,17 +349,152 @@ footer {
     margin-bottom: 20px;
 }
 
+/* 11. SOLUCIONES TECNOLÓGICAS (TABS) */
+.tabs-container {
+    background: var(--card-bg);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.tabs-header {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.tab-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 20px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+.tab-btn svg {
+    transition: var(--transition-fast);
+}
+
+.tab-btn:hover {
+    color: var(--text-white);
+    background: rgba(255,255,255,0.02);
+}
+
+.tab-btn.active {
+    color: var(--accent-cyan);
+    background: rgba(0, 245, 255, 0.05);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.tabs-body {
+    padding: 40px;
+    position: relative;
+    min-height: 250px;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn var(--transition-fast);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-info h3 {
+    color: var(--accent-neon);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.tab-info p {
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+.tab-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.tab-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-white);
+}
+
+.solutions-cta {
+    text-align: center;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.solutions-cta p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
 /* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
     .contact-container {
         grid-template-columns: 1fr;
     }
-    
+
     .hero-content h1 {
         font-size: 2.5rem;
     }
-    
+
     .section-title {
         font-size: 2rem;
+    }
+
+    .tabs-header {
+        flex-direction: column;
+    }
+    
+    .tab-btn {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 15px 25px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .tab-btn.active::after {
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        height: 100%;
     }
 }
