@@ -438,9 +438,18 @@
     <!-- Enlace a script principal -->
     <script src="script.js"></script>
 
-    <!-- Chatbot Interactivo (Chatbase) - Botón Flotante e Interactivo -->
+    <!-- Chatbot Interactivo (Chatbase) - Posicionado en esquina inferior izquierda -->
+    <style>
+        /* Forzar posicionamiento del chatbot a la izquierda */
+        iframe#chatbase-bubble-window,
+        #chatbase-bubble-button {
+            left: 16px !important;
+            right: auto !important;
+            bottom: 16px !important;
+        }
+    </style>
     <script>
-        (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "KNJTDJGoD7Ne6hidBFJde"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
+        (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="pJWRAw9asi4vak6rGAtMk";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
     <!-- Botones Flotantes (FABs) -->
     <div class="floating-fabs"
