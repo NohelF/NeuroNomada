@@ -30,11 +30,11 @@
         #hero {
             height: auto !important;
             min-height: auto !important;
-            padding: 120px 0 60px 0 !important;
+            padding: 120px 0 20px 0 !important;
         }
-        
+
         section#soluciones {
-            padding-top: 30px !important;
+            padding-top: 20px !important;
             padding-bottom: 60px !important;
         }
 
@@ -49,15 +49,17 @@
                 right: 15px !important;
                 gap: 12px !important;
             }
+
             .floating-fabs a {
                 width: 48px !important;
                 height: 48px !important;
             }
+
             .floating-fabs a svg {
                 width: 24px !important;
                 height: 24px !important;
             }
-            
+
             #chatbase-bubble-button,
             #chatbase-bubble-window,
             iframe[src*="chatbase.co"],
@@ -73,40 +75,61 @@
     <!-- 1. PRESENTACIÓN (HERO SECTION) -->
     <header id="hero">
         <div class="container hero-content">
-            <div class="profile-container">
-                <img src="https://res.cloudinary.com/drskhmrtc/image/upload/v1773091798/WhatsApp_Image_2023-12-02_at_10.45.19_PM_dtd1mz.jpg"
-                    alt="Nohel Federico - NeuroNómada" class="profile-pic">
+            <div class="profile-container" onclick="this.classList.toggle('flipped')">
+                <div class="profile-flip-inner">
+                    <div class="profile-front">
+                        <img src="https://res.cloudinary.com/drskhmrtc/image/upload/v1773091798/WhatsApp_Image_2023-12-02_at_10.45.19_PM_dtd1mz.jpg"
+                            alt="Nohel Federico - NeuroNómada" class="profile-pic">
+                    </div>
+                    <div class="profile-back">
+                        <img src="https://res.cloudinary.com/drskhmrtc/image/upload/v1773092761/WhatsApp_Image_2026-03-09_at_4.41.24_PM_l5njy9.jpg"
+                            alt="Nohel Federico - NeuroNómada Alterno" class="profile-pic">
+                    </div>
+                </div>
             </div>
             <h1 class="reveal">NeuroNómada</h1>
             <p class="hero-tagline mono reveal">"Tecnología en Movimiento"
             </p>
             <div class="hero-bio reveal">
-                <p>Soy <strong>Nohel Federico</strong>, Fundador de <strong>NeuroNómada</strong>. Diseño e implemento soluciones tecnológicas que integran domótica, electrónica, desarrollo web y posicionamiento digital, utilizando IoT e inteligencia artificial para transformar espacios y negocios.
-
-Mi propósito es convertir la tecnología en una herramienta estratégica que simplifique la vida, automatice procesos y abra nuevas oportunidades en el mundo digital.
+                <p>Soy <strong>Nohel Federico</strong>, Fundador de <strong>NeuroNómada</strong>. Diseño e implemento
+                    soluciones tecnológicas que integran domótica, desarrollo web con posicionamiento digital,
+                    electrónica aplicada y diseño 3D, utilizando IoT e inteligencia artificial para transformar espacios
+                    y negocios.
+                    Mi propósito es convertir la tecnología en una herramienta estratégica que simplifique la vida,
+                    automatice procesos y abra nuevas oportunidades en el mundo digital.
                 </p>
             </div>
         </div>
     </header>
 
+    <!-- TRANSICIÓN / DIVIDER -->
+    <div class="transition-divider reveal">
+        <p class="transition-phrase mono">"Haz que tus ideas cobren vida con tecnología aplicada"</p>
+        <div class="glow-line"></div>
+    </div>
+
     <!-- SOLUCIONES TECNOLÓGICAS (GRID) -->
     <section id="soluciones" class="container">
         <div class="reveal">
             <h2 class="section-title" style="margin-bottom: 10px;">Soluciones Tecnológicas</h2>
-            <p class="section-subtitle" style="text-align: center; color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-                Transforma tus espacios en entornos inteligentes y optimiza los procesos de tu negocio.
+            <p class="section-subtitle"
+                style="text-align: center; color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Automatiza tu vida. Optimiza tu mundo digital. Repara lo que importa. Crea lo que imaginas.
             </p>
         </div>
 
         <div class="projects-grid reveal" style="margin-bottom: 20px;">
             <!-- Solucion 1 -->
-            <div class="project-card">
+            <div class="project-card" style="cursor: pointer;" onclick="openAutomationFlow()">
                 <div class="project-img" style="width: 100%; height: 200px; overflow: hidden; background: #000;">
-                    <img src="https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Automatización Inteligente" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                    <img src="https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Automatización Inteligente" loading="lazy"
+                        style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
                 </div>
                 <div class="project-content">
                     <h4>Automatización Inteligente</h4>
-                    <p>Transforma tus espacios en lugares inteligentes. Controla luces, TV, aire acondicionado, ventiladores, seguridad y mucho mas desde tu celular o con tu voz..</p>
+                    <p>Transforma tus espacios en lugares inteligentes. Controla luces, TV, aire acondicionado,
+                        ventiladores, seguridad y mucho mas desde tu celular o con tu voz..</p>
                     <div class="tags">
                         <span class="tech-tag">IoT</span>
                         <span class="tech-tag">Domótica</span>
@@ -114,16 +137,99 @@ Mi propósito es convertir la tecnología en una herramienta estratégica que si
                         <span class="tech-tag">Automatización</span>
                     </div>
                 </div>
+
+                <!-- Automation Interactive Overlay -->
+                <div id="automation-flow-overlay" class="automation-overlay" onclick="event.stopPropagation()">
+                    <button class="close-overlay" aria-label="Cerrar" onclick="closeAutomationFlow(event)">×</button>
+                    <!-- Step 1 -->
+                    <div class="auto-step active" id="auto-step-1">
+                        <h4>¿Qué tipo de espacio deseas automatizar?</h4>
+                        <div class="auto-options-grid scrollable-options" id="step-1-options">
+                            <button class="auto-btn" onclick="selectOption(1, 'Hogar', event)">Hogar</button>
+                            <button class="auto-btn" onclick="selectOption(1, 'Oficina', event)">Oficina</button>
+                            <button class="auto-btn" onclick="selectOption(1, 'Otros entornos', event)">Otros
+                                entornos</button>
+                        </div>
+                        <div class="auto-nav-buttons">
+                            <button class="auto-btn-nav" id="btn-next-1" disabled
+                                onclick="goToStep(2, event)">Siguiente</button>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="auto-step" id="auto-step-2">
+                        <h4>Selecciona el área específica</h4>
+                        <div id="step-2-options-container" class="scrollable-options">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                        <div class="auto-input-container" id="auto-input-2" style="margin-top: 10px;"
+                            onclick="event.stopPropagation();">
+                            <input type="text" id="custom-area" class="auto-input" placeholder="Especifica el área...">
+                            <button class="auto-btn-nav" onclick="submitCustomArea(event)">Aceptar</button>
+                        </div>
+                        <div class="auto-nav-buttons">
+                            <button class="auto-btn-nav" onclick="goToStep(1, event)">Volver</button>
+                            <button class="auto-btn-nav" id="btn-next-2" disabled
+                                onclick="goToStep(3, event)">Siguiente</button>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="auto-step" id="auto-step-3">
+                        <h4>¿Qué te gustaría automatizar?</h4>
+                        <div class="auto-options-list scrollable-options" id="step-3-options">
+                            <button class="auto-btn"
+                                onclick="selectOption(3, 'Iluminación inteligente', event)">Iluminación
+                                inteligente</button>
+                            <button class="auto-btn"
+                                onclick="selectOption(3, 'Seguridad (cámaras)', event)">Seguridad (cámaras)</button>
+                            <button class="auto-btn"
+                                onclick="selectOption(3, 'Accesos (puertas, cerraduras)', event)">Accesos (puertas,
+                                cerraduras)</button>
+                            <button class="auto-btn"
+                                onclick="selectOption(3, 'Control remoto (app o voz)', event)">Control remoto (app o
+                                voz)</button>
+                            <button class="auto-btn"
+                                onclick="selectOption(3, 'Automatización completa', event)">Automatización
+                                completa</button>
+                            <button class="auto-btn" onclick="showInput(3, event)">Otro</button>
+                        </div>
+                        <div class="auto-input-container" id="auto-input-3" style="margin-top: 10px;"
+                            onclick="event.stopPropagation();">
+                            <input type="text" id="custom-feature" class="auto-input"
+                                placeholder="Especifica tu idea...">
+                            <button class="auto-btn-nav" onclick="submitCustomFeature(event)">Aceptar</button>
+                        </div>
+                        <div class="auto-nav-buttons">
+                            <button class="auto-btn-nav" onclick="goToStep(2, event)">Volver</button>
+                            <button class="auto-btn-nav" id="btn-next-3" disabled
+                                onclick="goToStep(4, event)">Finalizar</button>
+                        </div>
+                    </div>
+                    <!-- Step 4 / Result -->
+                    <div class="auto-step" id="auto-step-4">
+                        <h4 style="color: var(--accent-neon);">¡Excelente elección!</h4>
+                        <p id="auto-result-text" style="margin-bottom: 20px; font-size: 0.95rem; text-align: center;">
+                            Quieres automatizar ...</p>
+                        <button class="btn-primary" onclick="openWhatsApp(event)"
+                            style="display: block; width: 100%; text-align: center; padding: 12px; font-size: 1rem; border: 2px solid var(--accent-neon); background: transparent; cursor: pointer; color: var(--accent-neon); transition: var(--transition-fast);">Solicitar
+                            asesoría por WhatsApp</button>
+                        <div class="auto-nav-buttons" style="display: flex; justify-content: center; width: 100%;">
+                            <button class="auto-btn-nav" onclick="goToStep(3, event)">Regresar</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Solucion 2 -->
-            <div class="project-card">
+            <div class="project-card" style="cursor: pointer;" onclick="openPosFlow()">
                 <div class="project-img" style="width: 100%; height: 200px; overflow: hidden; background: #000;">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Posicionamiento Digital" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Posicionamiento Digital" loading="lazy"
+                        style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
                 </div>
                 <div class="project-content">
                     <h4>Posicionamiento Digital</h4>
-                    <p>Creación y optimización de presencia online mediante páginas web, Google Maps y redes sociales para aumentar visibilidad y atraer clientes.</p>
+                    <p>Creación y optimización de presencia online mediante páginas web, Google Maps y redes sociales
+                        para aumentar visibilidad y atraer clientes.</p>
                     <div class="tags">
                         <span class="tech-tag">Web</span>
                         <span class="tech-tag">ChatBot</span>
@@ -132,16 +238,94 @@ Mi propósito es convertir la tecnología en una herramienta estratégica que si
                         <span class="tech-tag">Redes Sociales</span>
                     </div>
                 </div>
+
+                <!-- Posicionamiento Digital Interactive Overlay -->
+                <div id="pos-flow-overlay" class="automation-overlay" onclick="event.stopPropagation()">
+                    <button class="close-overlay" aria-label="Cerrar" onclick="closePosFlow(event)">×</button>
+                    <!-- Step 1 -->
+                    <div class="auto-step active" id="pos-step-1">
+                        <h4>¿A quién va dirigido el proyecto?</h4>
+                        <div class="auto-options-list scrollable-options" id="pos-step-1-options">
+                            <button class="auto-btn" onclick="selectPosOption(1, 'Marca Personal', event)">Marca Personal</button>
+                            <button class="auto-btn" onclick="selectPosOption(1, 'Negocio Local', event)">Negocio Local</button>
+                            <button class="auto-btn" onclick="selectPosOption(1, 'Tienda Online / E-commerce', event)">Tienda Online / E-commerce</button>
+                            <button class="auto-btn" onclick="showPosInput(1, event)">Otro</button>
+                        </div>
+                        <div class="auto-input-container" id="pos-input-1" style="margin-top: 10px; display: none;" onclick="event.stopPropagation();">
+                            <input type="text" id="pos-custom-1" class="auto-input" placeholder="Especifica tu idea...">
+                            <button class="auto-btn-nav" onclick="submitPosCustom(1, event)">Aceptar</button>
+                        </div>
+                        <div class="auto-nav-buttons" style="display: flex; justify-content: flex-end; width: 100%;">
+                            <button class="auto-btn-nav" id="btn-pos-next-1" disabled onclick="goPosToStep(2, event)">Siguiente</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="auto-step" id="pos-step-2">
+                        <h4>¿Qué necesitas crear o mejorar?</h4>
+                        <div class="auto-options-list scrollable-options" id="pos-step-2-options">
+                            <button class="auto-btn" onclick="selectPosOption(2, 'Crear página web', event)">Crear página web</button>
+                            <button class="auto-btn" onclick="selectPosOption(2, 'Mejorar página existente', event)">Mejorar página existente</button>
+                            <button class="auto-btn" onclick="selectPosOption(2, 'Automatización con chatbots', event)">Automatización con chatbots</button>
+                            <button class="auto-btn" onclick="selectPosOption(2, 'Integración API', event)">Integración API</button>
+                            <button class="auto-btn" onclick="selectPosOption(2, 'Presencia en redes sociales', event)">Presencia en redes sociales</button>
+                            <button class="auto-btn" onclick="showPosInput(2, event)">Otro</button>
+                        </div>
+                        <div class="auto-input-container" id="pos-input-2" style="margin-top: 10px; display: none;" onclick="event.stopPropagation();">
+                            <input type="text" id="pos-custom-2" class="auto-input" placeholder="Especifica tu necesidad...">
+                            <button class="auto-btn-nav" onclick="submitPosCustom(2, event)">Aceptar</button>
+                        </div>
+                        <div class="auto-nav-buttons">
+                            <button class="auto-btn-nav" onclick="goPosToStep(1, event)">Volver</button>
+                            <button class="auto-btn-nav" id="btn-pos-next-2" disabled onclick="goPosToStep(3, event)">Siguiente</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="auto-step" id="pos-step-3">
+                        <h4>¿Cuál es tu objetivo principal?</h4>
+                        <div class="auto-options-list scrollable-options" id="pos-step-3-options">
+                            <button class="auto-btn" onclick="selectPosOption(3, 'Conseguir más clientes o leads', event)">Conseguir más clientes o leads</button>
+                            <button class="auto-btn" onclick="selectPosOption(3, 'Vender productos directamente online', event)">Vender productos directamente online</button>
+                            <button class="auto-btn" onclick="selectPosOption(3, 'Mejorar mi imagen profesional', event)">Mejorar mi imagen profesional</button>
+                            <button class="auto-btn" onclick="selectPosOption(3, 'Digitalizar procesos manuales', event)">Digitalizar procesos manuales</button>
+                            <button class="auto-btn" onclick="showPosInput(3, event)">Otro</button>
+                        </div>
+                        <div class="auto-input-container" id="pos-input-3" style="margin-top: 10px; display: none;" onclick="event.stopPropagation();">
+                            <input type="text" id="pos-custom-3" class="auto-input" placeholder="Especifica tu objetivo...">
+                            <button class="auto-btn-nav" onclick="submitPosCustom(3, event)">Aceptar</button>
+                        </div>
+                        <div class="auto-nav-buttons">
+                            <button class="auto-btn-nav" onclick="goPosToStep(2, event)">Volver</button>
+                            <button class="auto-btn-nav" id="btn-pos-next-3" disabled onclick="goPosToStep(4, event)">Finalizar</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 / Result -->
+                    <div class="auto-step" id="pos-step-4">
+                        <h4 style="color: var(--accent-neon);">¡Excelente elección!</h4>
+                        <p id="pos-result-text" style="margin-bottom: 20px; font-size: 0.95rem; text-align: center;">
+                            Proyecto enfocado y listo...</p>
+                        <button class="btn-primary" onclick="openPosWhatsApp(event)"
+                            style="display: block; width: 100%; text-align: center; padding: 12px; font-size: 1rem; border: 2px solid var(--accent-neon); background: transparent; cursor: pointer; color: var(--accent-neon); transition: var(--transition-fast);">Solicitar asesoría por WhatsApp</button>
+                        <div class="auto-nav-buttons" style="display: flex; justify-content: center; width: 100%;">
+                            <button class="auto-btn-nav" onclick="goPosToStep(3, event)">Regresar</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Solucion 3 -->
-            <div class="project-card">
+            <div class="project-card" style="cursor: pointer;" onclick="openElecFlow()">
                 <div class="project-img" style="width: 100%; height: 200px; overflow: hidden; background: #000;">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Electrónica Aplicada" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Electrónica Aplicada" loading="lazy"
+                        style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
                 </div>
                 <div class="project-content">
                     <h4>Electrónica Aplicada</h4>
-                    <p>Reparación, mantenimiento e integración de sistemas electrónicos adaptados a necesidades específicas.</p>
+                    <p>Reparación, mantenimiento e integración de sistemas electrónicos adaptados a necesidades
+                        específicas.</p>
                     <div class="tags">
                         <span class="tech-tag">Reparación</span>
                         <span class="tech-tag">Mantenimiento</span>
@@ -149,21 +333,94 @@ Mi propósito es convertir la tecnología en una herramienta estratégica que si
                         <span class="tech-tag">Integración</span>
                     </div>
                 </div>
+
+                <!-- Electrónica Aplicada Interactive Overlay -->
+                <div id="elec-flow-overlay" class="automation-overlay" onclick="event.stopPropagation()">
+                    <button class="close-overlay" aria-label="Cerrar" onclick="closeElecFlow(event)">×</button>
+                    <!-- Step 1 -->
+                    <div class="auto-step active" id="elec-step-1">
+                        <h4>¿Qué servicio de electrónica requieres?</h4>
+                        <div class="auto-options-list scrollable-options" id="elec-step-1-options">
+                            <button class="auto-btn" onclick="selectElecOption(1, 'Diagnóstico', event)">Diagnóstico</button>
+                            <button class="auto-btn" onclick="selectElecOption(1, 'Mantenimientos', event)">Mantenimientos</button>
+                            <button class="auto-btn" onclick="selectElecOption(1, 'Reparaciones', event)">Reparaciones</button>
+                            <button class="auto-btn" onclick="selectElecOption(1, 'Ensamblado', event)">Ensamblado</button>
+                        </div>
+                        <div class="auto-nav-buttons" style="justify-content: flex-end;">
+                            <button class="auto-btn-nav" id="btn-elec-next-1" disabled onclick="goElecToStep(2, event)">Siguiente</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="auto-step" id="elec-step-2">
+                        <h4>Selecciona el servicio específico</h4>
+                        <div class="auto-options-list scrollable-options" id="elec-step-2-options-container">
+                            <!-- Dynamically injected -->
+                        </div>
+                        <div class="auto-nav-buttons">
+                            <button class="auto-btn-nav" onclick="goElecToStep(1, event)">Volver</button>
+                            <button class="auto-btn-nav" id="btn-elec-next-2" disabled onclick="goElecToStep(3, event)">Finalizar</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 / Result -->
+                    <div class="auto-step" id="elec-step-3">
+                        <h4 style="color: var(--accent-neon);">¡Excelente elección!</h4>
+                        <p id="elec-result-text" style="margin-bottom: 20px; font-size: 0.95rem; text-align: center;">Solicitud generada...</p>
+                        <button class="btn-primary" onclick="openElecWhatsApp(event)" style="display: block; width: 100%; text-align: center; padding: 12px; font-size: 1rem; border: 2px solid var(--accent-neon); background: transparent; cursor: pointer; color: var(--accent-neon); transition: var(--transition-fast);">Solicitar servicio por WhatsApp</button>
+                        <div class="auto-nav-buttons" style="display: flex; justify-content: center; width: 100%;">
+                            <button class="auto-btn-nav" onclick="goElecToStep(2, event)">Regresar</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Solucion 4 -->
-            <div class="project-card">
+            <div class="project-card" style="cursor: pointer;" onclick="open3dFlow()">
                 <div class="project-img" style="width: 100%; height: 200px; overflow: hidden; background: #000;">
-                    <img src="assets/prosthesis_3d.png" alt="Modelo Diseño Prótesis 3D / CAD" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                    <img src="assets/prosthesis_3d.png" alt="Modelo Diseño Prótesis 3D / CAD" loading="lazy"
+                        style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
                 </div>
                 <div class="project-content">
                     <h4>Diseño 3D</h4>
-                    <p>Creación de bocetos y visualizaciones en 3D para representar proyectos tecnológicos antes de su implementación.</p>
+                    <p>Creación de bocetos y visualizaciones en 3D para representar proyectos tecnológicos antes de su
+                        implementación.</p>
                     <div class="tags">
                         <span class="tech-tag">3D</span>
                         <span class="tech-tag">Modelado</span>
                         <span class="tech-tag">Prototipos</span>
                         <span class="tech-tag">Visualización</span>
+                    </div>
+                </div>
+
+                <!-- Diseño 3D Interactive Overlay -->
+                <div id="3d-flow-overlay" class="automation-overlay" onclick="event.stopPropagation()">
+                    <button class="close-overlay" aria-label="Cerrar" onclick="close3dFlow(event)">×</button>
+                    <!-- Step 1 -->
+                    <div class="auto-step active" id="3d-step-1">
+                        <h4>¿Qué tipo de diseño 3D necesitas?</h4>
+                        <div class="auto-options-list scrollable-options" id="3d-step-1-options">
+                            <button class="auto-btn" onclick="select3dOption(1, 'Creación de Sketch', event)">Creación de Sketch</button>
+                            <button class="auto-btn" onclick="select3dOption(1, 'Prototipos Fusion 360', event)">Prototipos Fusion 360</button>
+                            <button class="auto-btn" onclick="select3dOption(1, 'Modelado con Fusion 360', event)">Modelado con Fusion 360</button>
+                            <button class="auto-btn" onclick="show3dInput(1, event)">Otro</button>
+                        </div>
+                        <div class="auto-input-container" id="3d-input-1" style="margin-top: 10px; display: none;" onclick="event.stopPropagation();">
+                            <input type="text" id="3d-custom-1" class="auto-input" placeholder="Especifica tu necesidad...">
+                            <button class="auto-btn-nav" onclick="submit3dCustom(1, event)">Aceptar</button>
+                        </div>
+                        <div class="auto-nav-buttons" style="display: flex; justify-content: flex-end; width: 100%;">
+                            <button class="auto-btn-nav" id="btn-3d-next-1" disabled onclick="go3dToStep(2, event)">Finalizar</button>
+                        </div>
+                    </div>
+                    <!-- Step 2 / Result -->
+                    <div class="auto-step" id="3d-step-2">
+                        <h4 style="color: var(--accent-neon);">¡Excelente elección!</h4>
+                        <p id="3d-result-text" style="margin-bottom: 20px; font-size: 0.95rem; text-align: center;">Quieres enfocar tu proyecto en ...</p>
+                        <button class="btn-primary" onclick="open3dWhatsApp(event)" style="display: block; width: 100%; text-align: center; padding: 12px; font-size: 1rem; border: 2px solid var(--accent-neon); background: transparent; cursor: pointer; color: var(--accent-neon); transition: var(--transition-fast);">Solicitar asesoría por WhatsApp</button>
+                        <div class="auto-nav-buttons" style="display: flex; justify-content: center; width: 100%;">
+                            <button class="auto-btn-nav" onclick="go3dToStep(1, event)">Regresar</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -186,26 +443,649 @@ Mi propósito es convertir la tecnología en una herramienta estratégica que si
         (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "KNJTDJGoD7Ne6hidBFJde"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
     </script>
     <!-- Botones Flotantes (FABs) -->
-    <div class="floating-fabs" style="position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 9999;">
+    <div class="floating-fabs"
+        style="position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 9999;">
         <!-- TikTok -->
-        <a href="https://www.tiktok.com/@neuronomada.tech?_t=ZS-8yVizEpCQHn&_r=1" target="_blank" aria-label="TikTok" style="width: 55px; height: 55px; background: rgba(0,0,0,0.85); border: 2px solid var(--accent-cyan); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--accent-cyan); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 0 15px rgba(0, 245, 255, 0.4); backdrop-filter: blur(5px);" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 25px rgba(0, 245, 255, 0.7)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 15px rgba(0, 245, 255, 0.4)';">
+        <a href="https://www.tiktok.com/@neuronomada.tech?_t=ZS-8yVizEpCQHn&_r=1" target="_blank" aria-label="TikTok"
+            style="width: 55px; height: 55px; background: rgba(0,0,0,0.85); border: 2px solid var(--accent-cyan); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--accent-cyan); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 0 15px rgba(0, 245, 255, 0.4); backdrop-filter: blur(5px);"
+            onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 25px rgba(0, 245, 255, 0.7)';"
+            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 15px rgba(0, 245, 255, 0.4)';">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12.525.02c1.31 0 2.57.27 3.73.74V5.13c-.93-.34-1.92-.52-2.95-.52V9.33c2.47 0 4.67 1.11 6.13 2.87V4.93h1.44c1.17 0 2.27.42 3.12 1.12V.02h-11.47zM12.525 12.02c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm4.13 8.35c-.17.07-.35.11-.54.11-.78 0-1.41-.63-1.41-1.41 0-.19.04-.37.11-.54l-.44-.44c-.2.15-.35.34-.44.57-.18.45-.18.96 0 1.41.09.23.24.42.44.57 1.25 1.25 2.12-.13 2.28-1.27z" />
+                <path
+                    d="M12.525.02c1.31 0 2.57.27 3.73.74V5.13c-.93-.34-1.92-.52-2.95-.52V9.33c2.47 0 4.67 1.11 6.13 2.87V4.93h1.44c1.17 0 2.27.42 3.12 1.12V.02h-11.47zM12.525 12.02c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm4.13 8.35c-.17.07-.35.11-.54.11-.78 0-1.41-.63-1.41-1.41 0-.19.04-.37.11-.54l-.44-.44c-.2.15-.35.34-.44.57-.18.45-.18.96 0 1.41.09.23.24.42.44.57 1.25 1.25 2.12-.13 2.28-1.27z" />
             </svg>
         </a>
         <!-- WhatsApp -->
-        <a href="https://api.whatsapp.com/send/?phone=573208176427&text=Hola+NeuroNomada.+Quisiera+tener+mas+informacion+sobre+tus+servicios.&type=phone_number&app_absent=0" target="_blank" aria-label="WhatsApp" style="width: 55px; height: 55px; background: rgba(0,0,0,0.85); border: 2px solid var(--accent-neon); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--accent-neon); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 0 15px rgba(57, 255, 20, 0.4); backdrop-filter: blur(5px);" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 25px rgba(57, 255, 20, 0.7)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 15px rgba(57, 255, 20, 0.4)';">
+        <a href="https://api.whatsapp.com/send/?phone=573208176427&text=Hola+NeuroNomada.+Quisiera+tener+mas+informacion+sobre+tus+servicios.&type=phone_number&app_absent=0"
+            target="_blank" aria-label="WhatsApp"
+            style="width: 55px; height: 55px; background: rgba(0,0,0,0.85); border: 2px solid var(--accent-neon); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--accent-neon); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 0 15px rgba(57, 255, 20, 0.4); backdrop-filter: blur(5px);"
+            onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 25px rgba(57, 255, 20, 0.7)';"
+            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 15px rgba(57, 255, 20, 0.4)';">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12.012 2c-5.508 0-9.987 4.479-9.987 9.987 0 1.763.462 3.421 1.262 4.861L2 22l5.304-1.393c1.44.751 3.064 1.18 4.708 1.18 5.508 0 9.987-4.479 9.987-9.987 0-5.508-4.479-9.987-9.987-9.987zM6.692 17.185l-.343-.546c-1.183-1.885-1.808-4.062-1.808-6.326 0-4.402 3.582-7.985 7.985-7.985 4.402 0 7.985 3.583 7.985 7.985 0 4.402-3.582 7.985-7.985 7.985-2.226 0-4.316-.603-6.128-1.742l-.443-.28-3.097.813 1.134-2.89zM15.5 12.002c-.22-.11-.5-.22-.55-.25-.05-.03-.1-.05-.15-.05s-.1.02-.15.05l-.4.3c-.05.05-.1.08-.15.08s-.1-.05-.15-.08a5.166 5.166 0 0 1-1.25-1.25c-.03-.05-.08-.1-.08-.15s.03-.1.08-.15l.3-.4c.03-.05.05-.1.05-.15s-.02-.1-.05-.15-.22-.28-.25-.33c-.03-.05-.05-.1-.1-.1s-.1.02-.15.05l-.4.3c-.05.05-.08.1-.08.15 0 .22.11.5.25.55.03.03.05.08.08.1 1.25 1.25 1.3 1.3 1.33 1.33.05.08.14.19.22.25.05.03.11.08.15.08s.1-.03.15-.08l.4-.3c.05-.05.1-.08.15-.08s.1.03.15.08l.3.4c.03.05.05.1.05.15s-.02.1-.05.15c-.03.05-.33.35-.33.35l-.05.05c-.03.03-.08.05-.13.05z" />
+                <path
+                    d="M12.012 2c-5.508 0-9.987 4.479-9.987 9.987 0 1.763.462 3.421 1.262 4.861L2 22l5.304-1.393c1.44.751 3.064 1.18 4.708 1.18 5.508 0 9.987-4.479 9.987-9.987 0-5.508-4.479-9.987-9.987-9.987zM6.692 17.185l-.343-.546c-1.183-1.885-1.808-4.062-1.808-6.326 0-4.402 3.582-7.985 7.985-7.985 4.402 0 7.985 3.583 7.985 7.985 0 4.402-3.582 7.985-7.985 7.985-2.226 0-4.316-.603-6.128-1.742l-.443-.28-3.097.813 1.134-2.89zM15.5 12.002c-.22-.11-.5-.22-.55-.25-.05-.03-.1-.05-.15-.05s-.1.02-.15.05l-.4.3c-.05.05-.1.08-.15.08s-.1-.05-.15-.08a5.166 5.166 0 0 1-1.25-1.25c-.03-.05-.08-.1-.08-.15s.03-.1.08-.15l.3-.4c.03-.05.05-.1.05-.15s-.02-.1-.05-.15-.22-.28-.25-.33c-.03-.05-.05-.1-.1-.1s-.1.02-.15.05l-.4.3c-.05.05-.08.1-.08.15 0 .22.11.5.25.55.03.03.05.08.08.1 1.25 1.25 1.3 1.3 1.33 1.33.05.08.14.19.22.25.05.03.11.08.15.08s.1-.03.15-.08l.4-.3c.05-.05.1-.08.15-.08s.1.03.15.08l.3.4c.03.05.05.1.05.15s-.02.1-.05.15c-.03.05-.33.35-.33.35l-.05.05c-.03.03-.08.05-.13.05z" />
             </svg>
         </a>
     </div>
+
+    <!-- Script para Flujo Interactivo de Diseño 3D -->
+    <script>
+        let tState = { 1: '' };
+        
+        function open3dFlow() {
+            document.getElementById('3d-flow-overlay').classList.add('open');
+            tState = { 1: '' };
+            go3dToStep(1);
+        }
+
+        function close3dFlow(event) {
+            if (event) event.stopPropagation();
+            document.getElementById('3d-flow-overlay').classList.remove('open');
+        }
+
+        function go3dToStep(step, event) {
+            if (event) event.stopPropagation();
+            
+            if (step === 2) render3dResult();
+
+            document.querySelectorAll('#3d-flow-overlay .auto-step').forEach(el => el.classList.remove('active'));
+            let targetStep = document.getElementById(`3d-step-${step}`);
+            if(targetStep) targetStep.classList.add('active');
+
+            update3dNextBtn(step);
+            render3dSelected(step);
+        }
+
+        function show3dInput(step, event) {
+            if (event) event.stopPropagation();
+            
+            let container = document.getElementById(`3d-step-${step}-options`);
+            if(container) container.querySelectorAll('.auto-btn').forEach(b => b.classList.remove('selected'));
+            
+            if (event && event.target) event.target.classList.add('selected');
+            
+            const inpCont = document.getElementById('3d-input-' + step);
+            if(inpCont) {
+                inpCont.style.display = 'flex';
+                let inp = inpCont.querySelector('input');
+                if(inp) inp.focus();
+            }
+
+            tState[step] = '';
+            let nextBtn = document.getElementById(`btn-3d-next-${step}`);
+            if (nextBtn) nextBtn.disabled = true;
+        }
+
+        function select3dOption(step, value, event) {
+            if (event) event.stopPropagation();
+
+            let cont = document.getElementById('3d-input-' + step);
+            if(cont) cont.style.display = 'none';
+
+            let inp = document.getElementById(`3d-custom-${step}`);
+            if (inp) inp.value = '';
+
+            tState[step] = value;
+
+            let container = document.getElementById(`3d-step-${step}-options`);
+            if(container) {
+                container.querySelectorAll('.auto-btn').forEach(b => b.classList.remove('selected'));
+            }
+            if (event && event.target) event.target.classList.add('selected');
+
+            update3dNextBtn(step);
+        }
+
+        function submit3dCustom(step, event) {
+            if (event) event.stopPropagation();
+            let inp = document.getElementById(`3d-custom-${step}`);
+            let val = inp ? inp.value.trim() : '';
+            if (!val) {
+                alert("Por favor ingrese un texto válido.");
+                return;
+            }
+            tState[step] = val;
+
+            let nextBtn = document.getElementById(`btn-3d-next-${step}`);
+            if (nextBtn) {
+                nextBtn.disabled = false;
+                nextBtn.classList.add('pulse-anim');
+                setTimeout(() => nextBtn.classList.remove('pulse-anim'), 300);
+            }
+        }
+
+        function render3dSelected(step) {
+            let val = tState[step];
+            if (!val) return;
+
+            let container = document.getElementById(`3d-step-${step}-options`);
+            if (!container) return;
+
+            let foundExact = false;
+            container.querySelectorAll('.auto-btn').forEach(b => {
+                if (b.innerText.trim() === val.trim() || b.textContent.trim() === val.trim()) {
+                    b.classList.add('selected');
+                    foundExact = true;
+                } else {
+                    b.classList.remove('selected');
+                }
+            });
+
+            if (!foundExact && val) {
+                let otroBtn = Array.from(container.querySelectorAll('.auto-btn')).find(b => b.innerText.includes('Otro'));
+                if (otroBtn) otroBtn.classList.add('selected');
+
+                let inputContainer = document.getElementById('3d-input-' + step);
+                if (inputContainer) {
+                    inputContainer.style.display = 'flex';
+                    let inp = document.getElementById(`3d-custom-${step}`);
+                    if (inp) inp.value = val;
+                }
+            }
+        }
+
+        function update3dNextBtn(step) {
+            let btn = document.getElementById(`btn-3d-next-${step}`);
+            if (btn) btn.disabled = !tState[step];
+        }
+
+        function render3dResult() {
+            let n1 = tState[1] || '';
+            const resultHtml = `Quieres enfocar tu proyecto 3D en <strong style="color: var(--accent-neon);">${n1.toLowerCase()}</strong>.`;
+            document.getElementById('3d-result-text').innerHTML = resultHtml;
+        }
+
+        function open3dWhatsApp(event) {
+            if (event) event.stopPropagation();
+            let n1 = tState[1] ? tState[1].trim() : '';
+            
+            if (!n1) {
+                alert("Faltan datos en tu cotización.");
+                return;
+            }
+            
+            const phone = "573208176427";
+            const message = `Hola NeuroNómada, me gustaría cotizar servicios de diseño 3D, enfocado en ${n1.toLowerCase()}. Me interesa recibir asesoría técnica.`;
+            const encodedMessage = encodeURIComponent(message);
+            const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`;
+            
+            window.open(waUrl, "_blank");
+        }
+    </script>
+
+    <!-- Script para Flujo Interactivo de Automatización (Avanzado) -->
+    <script>
+        let autoState = { 1: '', 2: '', 3: '' };
+
+        function openAutomationFlow() {
+            document.getElementById('automation-flow-overlay').classList.add('open');
+            // Hard reset on re-open
+            autoState = { 1: '', 2: '', 3: '' };
+            goToStep(1);
+        }
+
+        function closeAutomationFlow(event) {
+            if (event) event.stopPropagation();
+            document.getElementById('automation-flow-overlay').classList.remove('open');
+        }
+
+        function goToStep(step, event) {
+            if (event) event.stopPropagation();
+
+            // Populate dynamic stuff when advancing
+            if (step === 2) renderStep2(autoState[1]);
+            if (step === 4) renderResult();
+
+            document.querySelectorAll('.auto-step').forEach(el => el.classList.remove('active'));
+            document.getElementById(`auto-step-${step}`).classList.add('active');
+
+            updateNextBtn(step);
+            renderSelected(step);
+        }
+
+        function showInput(step, event) {
+            if (event) event.stopPropagation();
+
+            // clear highlights
+            let container = document.getElementById(`step-${step}-options`) || document.getElementById('step-2-options-container');
+            if (container) container.querySelectorAll('.auto-btn').forEach(b => b.classList.remove('selected'));
+
+            // Highlight the clicked button ('Otro')
+            if (event && event.target) event.target.classList.add('selected');
+
+            const inpCont = document.getElementById('auto-input-' + step);
+            if (inpCont) {
+                inpCont.style.display = 'flex';
+                let inp = inpCont.querySelector('input');
+                if (inp) inp.focus();
+            }
+
+            autoState[step] = '';
+            let nextBtn = document.getElementById(`btn-next-${step}`);
+            if (nextBtn) nextBtn.disabled = true;
+        }
+
+        function selectOption(step, value, event) {
+            if (event) event.stopPropagation();
+
+            let cont = document.getElementById('auto-input-' + step);
+            if (cont) cont.style.display = 'none';
+
+            let inp = step === 2 ? document.getElementById('custom-area') : document.getElementById('custom-feature');
+            if (inp) inp.value = '';
+
+            autoState[step] = value;
+
+            let container = document.getElementById(`step-${step}-options`) || document.getElementById('step-2-options-container');
+            if (container) {
+                container.querySelectorAll('.auto-btn').forEach(b => b.classList.remove('selected'));
+            }
+            if (event && event.target) event.target.classList.add('selected');
+
+            updateNextBtn(step);
+        }
+
+        function submitCustom(step, event) {
+            if (event) event.stopPropagation();
+            let inpId = step === 2 ? 'custom-area' : 'custom-feature';
+            let val = document.getElementById(inpId).value.trim();
+            if (!val) {
+                alert("Por favor ingrese un texto válido.");
+                return;
+            }
+            autoState[step] = val;
+
+            // Highlight that it passed
+            let nextBtn = document.getElementById(`btn-next-${step}`);
+            if (nextBtn) {
+                nextBtn.disabled = false;
+                nextBtn.classList.add('pulse-anim'); // optional small interaction feedback
+                setTimeout(() => nextBtn.classList.remove('pulse-anim'), 300);
+            }
+        }
+        function submitCustomArea(event) { submitCustom(2, event); }
+        function submitCustomFeature(event) { submitCustom(3, event); }
+
+        function renderSelected(step) {
+            let val = autoState[step];
+            if (!val) return;
+
+            let container = document.getElementById(`step-${step}-options`) || document.getElementById('step-2-options-container');
+            if (!container) return;
+
+            let foundExact = false;
+            container.querySelectorAll('.auto-btn').forEach(b => {
+                if (b.innerText.replace('✍️', '').trim() === val.trim() || b.textContent.trim().replace('🏠 ', '').replace('🏢 ', '').replace('🌐 ', '') === val.trim() || b.innerText.includes(val)) {
+                    b.classList.add('selected');
+                    foundExact = true;
+                } else {
+                    b.classList.remove('selected');
+                }
+            });
+
+            if (!foundExact && val) {
+                let otroBtn = Array.from(container.querySelectorAll('.auto-btn')).find(b => b.innerText.includes('Otro'));
+                if (otroBtn) otroBtn.classList.add('selected');
+
+                let inputContainer = document.getElementById('auto-input-' + step);
+                if (inputContainer) {
+                    inputContainer.style.display = 'flex';
+                    let inpId = step === 2 ? 'custom-area' : 'custom-feature';
+                    let inp = document.getElementById(inpId);
+                    if (inp) inp.value = val;
+                }
+            }
+        }
+
+        function updateNextBtn(step) {
+            let btn = document.getElementById(`btn-next-${step}`);
+            if (btn) btn.disabled = !autoState[step];
+        }
+
+        function renderStep2(env) {
+            const container = document.getElementById('step-2-options-container');
+            let html = '';
+
+            if (env === 'Hogar') {
+                html += `<h5 class="auto-group-title">Interior:</h5>
+                         <div class="auto-options-grid">
+                            <button class="auto-btn" onclick="selectOption(2, 'Habitación', event)">Habitación</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Sala de estar', event)">Sala de estar</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Comedor', event)">Comedor</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Cocina', event)">Cocina</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Baño', event)">Baño</button>
+                         </div>
+                         <h5 class="auto-group-title">Exterior:</h5>
+                         <div class="auto-options-grid">
+                            <button class="auto-btn" onclick="selectOption(2, 'Garaje', event)">Garaje</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Jardín', event)">Jardín</button>
+                            <button class="auto-btn" onclick="showInput(2, event)">Otro</button>
+                         </div>`;
+            } else if (env === 'Oficina') {
+                html += `<div class="auto-options-grid">
+                            <button class="auto-btn" onclick="selectOption(2, 'Área de trabajo', event)">Área de trabajo</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Sala de reuniones', event)">Sala de reuniones</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Recepción', event)">Recepción</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Oficina privada', event)">Oficina privada</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Archivo', event)">Archivo</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Zona de descanso', event)">Zona de descanso</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Cafetería', event)">Cafetería</button>
+                            <button class="auto-btn" onclick="showInput(2, event)">Otro</button>
+                         </div>`;
+            } else {
+                html += `<div class="auto-options-grid">
+                            <button class="auto-btn" onclick="selectOption(2, 'Airbnb', event)">Airbnb</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Local', event)">Local</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Bodega, event)">Bodega</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Clínica', event)">Clínica</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Restaurante, event)">Restaurante</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Hotel', event)">Hotel</button>
+                            <button class="auto-btn" onclick="selectOption(2, 'Proyecto personalizado', event)">Proyecto personalizado</button>
+                         </div>`;
+            }
+            container.innerHTML = html;
+
+            let cont = document.getElementById('auto-input-2');
+            if (cont) cont.style.display = 'none';
+        }
+
+        function renderResult() {
+            let envText = autoState[1] || '';
+            let areaText = autoState[2] || '';
+            let featText = autoState[3] || '';
+
+            const resultHtml = `Quieres automatizar tu <strong style="color: var(--accent-neon);">${envText.toLowerCase()}</strong>, en el área de <strong style="color: var(--accent-neon);">${areaText.toLowerCase()}</strong>, enfocado en <strong style="color: var(--accent-cyan);">${featText.toLowerCase()}</strong>.`;
+            document.getElementById('auto-result-text').innerHTML = resultHtml;
+        }
+
+        function openWhatsApp(event) {
+            if (event) event.stopPropagation();
+
+            let envText = autoState[1] ? autoState[1].trim() : '';
+            let areaText = autoState[2] ? autoState[2].trim() : '';
+            let featText = autoState[3] ? autoState[3].trim() : '';
+
+            if (!envText || !areaText || !featText) {
+                alert("Faltan datos en tu cotización. Por favor, asegúrate de completar todas las opciones antes de solicitar asesoría.");
+                return;
+            }
+
+            const phone = "573208176427";
+            const message = `Hola NeuroNómada, quiero automatizar mi ${envText.toLowerCase()}, específicamente el área de ${areaText.toLowerCase()}, con soluciones de ${featText.toLowerCase()}. Me gustaría recibir asesoría.`;
+            const encodedMessage = encodeURIComponent(message);
+            const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`;
+
+            window.open(waUrl, "_blank");
+        }
+
+        /* --- LOGICA POSICIONAMIENTO DIGITAL --- */
+        let posState = { 1: '', 2: '', 3: '' };
+
+        function openPosFlow() {
+            document.getElementById('pos-flow-overlay').classList.add('open');
+            posState = { 1: '', 2: '', 3: '' };
+            goPosToStep(1);
+        }
+
+        function closePosFlow(event) {
+            if (event) event.stopPropagation();
+            document.getElementById('pos-flow-overlay').classList.remove('open');
+        }
+
+        function goPosToStep(step, event) {
+            if (event) event.stopPropagation();
+
+            if (step === 4) renderPosResult();
+
+            document.querySelectorAll('#pos-flow-overlay .auto-step').forEach(el => el.classList.remove('active'));
+            let targetStep = document.getElementById(`pos-step-${step}`);
+            if (targetStep) targetStep.classList.add('active');
+
+            updatePosNextBtn(step);
+            renderPosSelected(step);
+        }
+
+        function showPosInput(step, event) {
+            if (event) event.stopPropagation();
+
+            let container = document.getElementById(`pos-step-${step}-options`);
+            if (container) container.querySelectorAll('.auto-btn').forEach(b => b.classList.remove('selected'));
+
+            if (event && event.target) event.target.classList.add('selected');
+
+            const inpCont = document.getElementById('pos-input-' + step);
+            if (inpCont) {
+                inpCont.style.display = 'flex';
+                let inp = inpCont.querySelector('input');
+                if (inp) inp.focus();
+            }
+
+            posState[step] = '';
+            let nextBtn = document.getElementById(`btn-pos-next-${step}`);
+            if (nextBtn) nextBtn.disabled = true;
+        }
+
+        function selectPosOption(step, value, event) {
+            if (event) event.stopPropagation();
+
+            let cont = document.getElementById('pos-input-' + step);
+            if (cont) cont.style.display = 'none';
+
+            let inp = document.getElementById(`pos-custom-${step}`);
+            if (inp) inp.value = '';
+
+            posState[step] = value;
+
+            let container = document.getElementById(`pos-step-${step}-options`);
+            if (container) {
+                container.querySelectorAll('.auto-btn').forEach(b => b.classList.remove('selected'));
+            }
+            if (event && event.target) event.target.classList.add('selected');
+
+            updatePosNextBtn(step);
+        }
+
+        function submitPosCustom(step, event) {
+            if (event) event.stopPropagation();
+            let inp = document.getElementById(`pos-custom-${step}`);
+            let val = inp ? inp.value.trim() : '';
+            if (!val) {
+                alert("Por favor ingrese un texto válido.");
+                return;
+            }
+            posState[step] = val;
+
+            let nextBtn = document.getElementById(`btn-pos-next-${step}`);
+            if (nextBtn) {
+                nextBtn.disabled = false;
+                nextBtn.classList.add('pulse-anim');
+                setTimeout(() => nextBtn.classList.remove('pulse-anim'), 300);
+            }
+        }
+
+        function renderPosSelected(step) {
+            let val = posState[step];
+            if (!val) return;
+
+            let container = document.getElementById(`pos-step-${step}-options`);
+            if (!container) return;
+
+            let foundExact = false;
+            container.querySelectorAll('.auto-btn').forEach(b => {
+                if (b.innerText.trim() === val.trim() || b.textContent.trim() === val.trim()) {
+                    b.classList.add('selected');
+                    foundExact = true;
+                } else {
+                    b.classList.remove('selected');
+                }
+            });
+
+            if (!foundExact && val) {
+                let otroBtn = Array.from(container.querySelectorAll('.auto-btn')).find(b => b.innerText.includes('Otro'));
+                if (otroBtn) otroBtn.classList.add('selected');
+
+                let inputContainer = document.getElementById('pos-input-' + step);
+                if (inputContainer) {
+                    inputContainer.style.display = 'flex';
+                    let inp = document.getElementById(`pos-custom-${step}`);
+                    if (inp) inp.value = val;
+                }
+            }
+        }
+
+        function updatePosNextBtn(step) {
+            let btn = document.getElementById(`btn-pos-next-${step}`);
+            if (btn) btn.disabled = !posState[step];
+        }
+
+        function renderPosResult() {
+            let n1 = posState[1] || '';
+            let n2 = posState[2] || '';
+
+            const resultHtml = `Quieres un proyecto para <strong style="color: var(--accent-neon);">${n1.toLowerCase()}</strong> enfocado en <strong style="color: var(--accent-cyan);">${n2.toLowerCase()}</strong>.`;
+            document.getElementById('pos-result-text').innerHTML = resultHtml;
+        }
+
+        function openPosWhatsApp(event) {
+            if (event) event.stopPropagation();
+
+            let n1 = posState[1] ? posState[1].trim() : '';
+            let n2 = posState[2] ? posState[2].trim() : '';
+            let n3 = posState[3] ? posState[3].trim() : '';
+
+            if (!n1 || !n2 || !n3) {
+                alert("Faltan datos en tu cotización. Por favor, asegúrate de completar todas las opciones antes de solicitar asesoría.");
+                return;
+            }
+
+            const phone = "573208176427";
+            const message = `Hola NeuroNómada, me gustaría cotizar servicios de Posicionamiento Digital.\n\nMi proyecto es: ${n1.toLowerCase()}.\nNecesito: ${n2.toLowerCase()}.\nObjetivo: ${n3.toLowerCase()}.\n\nMe interesa recibir asesoría técnica.`;
+            const encodedMessage = encodeURIComponent(message);
+            const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`;
+
+            window.open(waUrl, "_blank");
+        }
+
+        /* --- LOGICA ELECTRÓNICA APLICADA --- */
+        let elecState = { 1: '', 2: '' };
+        
+        function openElecFlow() {
+            document.getElementById('elec-flow-overlay').classList.add('open');
+            elecState = { 1: '', 2: '' };
+            goElecToStep(1);
+        }
+
+        function closeElecFlow(event) {
+            if (event) event.stopPropagation();
+            document.getElementById('elec-flow-overlay').classList.remove('open');
+        }
+
+        function renderElecStep2(cat) {
+            const container = document.getElementById('elec-step-2-options-container');
+            let html = '';
+
+            if (cat === 'Diagnóstico') {
+                html += `<button class="auto-btn" onclick="selectElecOption(2, 'Pruebas', event)">Pruebas</button>
+                         <button class="auto-btn" onclick="selectElecOption(2, 'Identificación de fallas', event)">Identificación de fallas</button>`;
+            } else if (cat === 'Mantenimientos') {
+                html += `<button class="auto-btn" onclick="selectElecOption(2, 'Limpieza y ajuste de componentes', event)">Limpieza y ajuste de componentes</button>
+                         <button class="auto-btn" onclick="selectElecOption(2, 'Actualización de firmware o software', event)">Actualización de firmware o software</button>
+                         <button class="auto-btn" onclick="selectElecOption(2, 'Optimización de rendimiento', event)">Optimización de rendimiento</button>`;
+            } else if (cat === 'Reparaciones') {
+                html += `<button class="auto-btn" onclick="selectElecOption(2, 'Cambio de componentes', event)">Cambio de componentes</button>
+                         <button class="auto-btn" onclick="selectElecOption(2, 'Ajuste de circuito', event)">Ajuste de circuito</button>`;
+            } else if (cat === 'Ensamblado') {
+                html += `<button class="auto-btn" onclick="selectElecOption(2, 'Montaje de placas electrónicas', event)">Montaje de placas electrónicas</button>`;
+            }
+
+            container.innerHTML = html;
+        }
+
+        function selectElecOption(step, value, event) {
+            if (event) event.stopPropagation();
+
+            elecState[step] = value;
+
+            let container;
+            if (step === 1) container = document.getElementById(`elec-step-1-options`);
+            else container = document.getElementById(`elec-step-2-options-container`);
+
+            if (container) {
+                container.querySelectorAll('.auto-btn').forEach(b => b.classList.remove('selected'));
+            }
+            if (event && event.target) event.target.classList.add('selected');
+
+            updateElecNextBtn(step);
+        }
+
+        function goElecToStep(step, event) {
+            if (event) event.stopPropagation();
+            
+            if (step === 2) {
+                renderElecStep2(elecState[1]);
+                // Clear state below
+                elecState[2] = '';
+                updateElecNextBtn(2);
+            }
+            if (step === 3) renderElecResult();
+
+            document.querySelectorAll('#elec-flow-overlay .auto-step').forEach(el => el.classList.remove('active'));
+            let targetStep = document.getElementById(`elec-step-${step}`);
+            if(targetStep) targetStep.classList.add('active');
+
+            updateElecNextBtn(step);
+            renderElecSelected(step);
+        }
+
+        function renderElecSelected(step) {
+            let val = elecState[step];
+            if (!val) return;
+
+            let container;
+            if (step === 1) container = document.getElementById(`elec-step-1-options`);
+            else container = document.getElementById(`elec-step-2-options-container`);
+
+            if (!container) return;
+
+            container.querySelectorAll('.auto-btn').forEach(b => {
+                if (b.innerText.trim() === val.trim() || b.textContent.trim() === val.trim()) {
+                    b.classList.add('selected');
+                } else {
+                    b.classList.remove('selected');
+                }
+            });
+        }
+
+        function updateElecNextBtn(step) {
+            let btn = document.getElementById(`btn-elec-next-${step}`);
+            if (btn) btn.disabled = !elecState[step];
+        }
+
+        function renderElecResult() {
+            const cat = elecState[1] || '';
+            const sub = elecState[2] || '';
+            const resultHtml = `Has solicitado un servicio de <strong style="color: var(--accent-neon);">${cat.toLowerCase()}</strong> específicamente para <strong style="color: var(--accent-cyan);">${sub.toLowerCase()}</strong>.`;
+            document.getElementById('elec-result-text').innerHTML = resultHtml;
+        }
+
+        function openElecWhatsApp(event) {
+            if (event) event.stopPropagation();
+            if (!elecState[1] || !elecState[2]) {
+                alert("Faltan opciones por marcar en tu solicitud.");
+                return;
+            }
+            const phone = "573208176427";
+            const message = `Hola NeuroNómada, requiero un servicio de Electrónica Aplicada.\n\nCategoría: ${elecState[1]}\nServicio: ${elecState[2]}\n\nMe interesa recibir asistencia técnica.`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`, "_blank");
+        }
+    </script>
 
     <script>
         // UX: Play/Pause Videos automatically based on Intersection Observer
         document.addEventListener("DOMContentLoaded", () => {
             const videos = document.querySelectorAll("video.card-video");
-            
+
             if ("IntersectionObserver" in window) {
                 const videoObserver = new IntersectionObserver((entries) => {
                     entries.forEach((entry) => {
