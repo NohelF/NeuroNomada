@@ -462,13 +462,13 @@
                         style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
                 </div>
                 <div class="project-content">
-                    <h4>Diseño 3D Fusion</h4>
-                    <p>Modelado avanzado y prototipado técnico con Fusion 360 para ingeniería y diseño industrial.</p>
+                    <h4>Diseño 3D</h4>
+                    <p>Transformamos ideas en bocetos digitales 3D precisos y funcionales, diseñados para visualizar, prototipar y convertirse en soluciones reales”</p>
                     <div class="tags">
                         <span class="tech-tag">Fusion 360</span>
                         <span class="tech-tag">CAD</span>
                         <span class="tech-tag">Prototipos</span>
-                        <span class="tech-tag">Ingeniería</span>
+                        <span class="tech-tag">Sketch</span>
                     </div>
                 </div>
 
@@ -740,10 +740,22 @@
             z-index: 9999;
         }
 
-        /* Ocultar el widget de Vapi original (solo el botón) */
+        /* Ocultar el botón original de Vapi pero permitir que el UI sea visible al activarse */
         vapi-widget {
-            display: none !important;
-            visibility: hidden !important;
+            position: fixed !important;
+            bottom: 30px !important;
+            right: 30px !important;
+            width: 0 !important;
+            height: 0 !important;
+            overflow: visible !important;
+            z-index: 9998 !important;
+            pointer-events: none !important;
+            visibility: visible !important; /* Asegurar que el contenido interno pueda verse */
+        }
+
+        /* Cuando el widget está activo o en llamada, permitir interacción */
+        vapi-widget.vapi-active {
+            pointer-events: auto !important;
         }
 
         /* Estilo para los FABs de la izquierda */
@@ -837,17 +849,40 @@
     <script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async type="text/javascript"></script>
     <script>
         function vapiWidgetStart() {
-            // Intentar llamar al método start del widget
             const widget = document.getElementById('vapi-widget-element');
-            if (widget && typeof widget.start === 'function') {
-                widget.start();
-            } else {
-                // Failsafe: Si no es una función, buscar el botón interno y hacerle click
-                const shadow = widget.shadowRoot;
-                const btn = shadow ? shadow.querySelector('button') : widget.querySelector('button');
-                if (btn) btn.click();
+            if (!widget) return;
+
+            // Asegurar que el widget sea interactivo
+            widget.classList.add('vapi-active');
+
+            // 1. Intentar via SDK Global si existe
+            if (window.vapi && typeof window.vapi.start === 'function') {
+                window.vapi.start();
+                return;
             }
+
+            // 2. Intentar via método del Elemento
+            if (typeof widget.start === 'function') {
+                widget.start();
+                return;
+            }
+
+            // 3. Failsafe: Simular click en el botón interno (Shadow DOM)
+            const shadow = widget.shadowRoot;
+            if (shadow) {
+                const innerBtn = shadow.querySelector('button') || shadow.querySelector('[role="button"]') || shadow.querySelector('div');
+                if (innerBtn) {
+                    innerBtn.click();
+                    return;
+                }
+            }
+
+            // 4. Último recurso: Simular click directo al elemento por si no tiene shadow root accesible
+            widget.click();
         }
+
+        // Observer para limpiar la clase vapi-active si la llamada termina (opcional)
+        // Por ahora lo dejamos activo para simplificar
     </script>
 
 
