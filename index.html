@@ -843,37 +843,49 @@
             const widget = document.getElementById('vapi-widget-element');
             if (!widget) return;
 
-            // Asegurar que el widget sea interactivo
+            // Asegurar que el widget sea interactivo y visible
             widget.classList.add('vapi-active');
 
-            // 1. Intentar via SDK Global si existe
+            // 1. Intentar via SDK Global (Recomendado por Vapi)
             if (window.vapi && typeof window.vapi.start === 'function') {
                 window.vapi.start();
                 return;
             }
 
-            // 2. Intentar via método del Elemento
+            // 2. Intentar via método del Elemento (Web Component)
             if (typeof widget.start === 'function') {
                 widget.start();
                 return;
             }
 
-            // 3. Failsafe: Simular click en el botón interno (Shadow DOM)
-            const shadow = widget.shadowRoot;
-            if (shadow) {
-                const innerBtn = shadow.querySelector('button') || shadow.querySelector('[role="button"]') || shadow.querySelector('div');
-                if (innerBtn) {
-                    innerBtn.click();
-                    return;
+            // 3. Simulación de Click Exhaustiva (Shadow DOM & Light DOM)
+            const tryClick = (root) => {
+                if (!root) return false;
+                // Buscar botones comunes en el widget de Vapi
+                const selectors = [
+                    'button', 
+                    '[role="button"]', 
+                    '.vapi-btn', 
+                    '[aria-label*="start" i]', 
+                    '[aria-label*="call" i]'
+                ];
+                for (let sel of selectors) {
+                    const btn = root.querySelector(sel);
+                    if (btn) {
+                        btn.click();
+                        return true;
+                    }
+                }
+                return false;
+            };
+
+            // Intentar en Light DOM, luego en Shadow DOM si existe
+            if (!tryClick(widget)) {
+                if (widget.shadowRoot) {
+                    tryClick(widget.shadowRoot);
                 }
             }
-
-            // 4. Último recurso: Simular click directo al elemento por si no tiene shadow root accesible
-            widget.click();
         }
-
-        // Observer para limpiar la clase vapi-active si la llamada termina (opcional)
-        // Por ahora lo dejamos activo para simplificar
     </script>
 
 
