@@ -61,7 +61,8 @@
             }
 
             .floating-fabs-left a,
-            .chatbot-fab-right a {
+            .chatbot-fab-right a,
+            .vapi-fab-right a {
                 width: auto !important;
                 min-width: 48px !important;
                 height: 48px !important;
@@ -69,22 +70,27 @@
             }
 
             .floating-fabs-left a span,
-            .chatbot-fab-right a span {
+            .chatbot-fab-right a span,
+            .vapi-fab-right a span {
                 font-size: 0.85rem !important;
             }
 
             .floating-fabs-left a svg,
-            .chatbot-fab-right a svg {
+            .chatbot-fab-right a svg,
+            .vapi-fab-right a svg {
                 width: 20px !important;
                 height: 20px !important;
             }
 
-            /* Ajuste para el widget de Vapi en móvil */
-            vapi-widget {
+            /* Ajuste para el FAB de Vapi en móvil */
+            .vapi-fab-right {
+                bottom: 20px !important;
+                right: 15px !important;
+            }
+
+            .chatbot-fab-right {
                 bottom: 85px !important;
                 right: 15px !important;
-                transform: scale(0.9);
-                transform-origin: bottom right;
             }
         }
     </style>
@@ -694,15 +700,15 @@
             pointer-events: none !important;
         }
 
-        /* Estilo para el bot├│n personalizado del Chatbot (Derecha) */
+        /* Estilo para el botón personalizado del Chatbot (Derecha - Superior) */
         .chatbot-fab-right {
             position: fixed;
-            bottom: 30px;
+            bottom: 100px; /* Movido arriba para dejar espacio a Vapi */
             right: 30px;
             z-index: 9999;
         }
 
-        .chatbot-fab-right a {
+        .chatbot-fab-right a, .vapi-fab-right a {
             min-width: 55px;
             height: 55px;
             background: rgba(0, 0, 0, 0.85);
@@ -721,18 +727,23 @@
             text-decoration: none;
         }
 
-        .chatbot-fab-right a:hover {
+        .chatbot-fab-right a:hover, .vapi-fab-right a:hover {
             transform: scale(1.05);
             box-shadow: 0 0 25px rgba(0, 245, 255, 0.7);
         }
 
-        /* Estilo para el widget de Vapi (integración visual) */
+        /* Estilo para el nuevo FAB de Vapi (Derecha - Inferior) */
+        .vapi-fab-right {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+        }
+
+        /* Ocultar el widget de Vapi original (solo el botón) */
         vapi-widget {
-            position: fixed !important;
-            bottom: 100px !important;
-            /* Posicionado arriba del botón de Soporte */
-            right: 30px !important;
-            z-index: 9998 !important;
+            display: none !important;
+            visibility: hidden !important;
         }
 
         /* Estilo para los FABs de la izquierda */
@@ -787,18 +798,57 @@
         </a>
     </div>
 
+    <!-- Botón Llámanos (Vapi) -->
+    <div class="vapi-fab-right" id="vapi-fab">
+        <a onclick="vapiWidgetStart();" aria-label="Llamar con IA">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 10.999h2c0-5.523-4.477-10-10-10v2c4.418 0 8 3.582 8 8zm-4 0h2c0-3.314-2.686-6-6-6v2c2.209 0 4 1.791 4 4zm-7.986 6.32c-.171-.246-.353-.41-.53-.518-.1-.061-.41-.235-.9-.452-.257-.116-.546-.246-.864-.4L5.61 15.9c-.318-.154-.477-.231-.54-.34-.04-.07-.052-.163-.031-.252.033-.14.24-.31.654-.65s.68-.523.766-.632l1.693-2.152a.377.377 0 0 0 0-.47l-.271-.344c-.75-.953-1.125-1.429-1.59-1.55a1.1 1.1 0 0 0-.555.006c-.461.127-.828.61-1.562 1.574-.188.246-.356.51-.5.789a7.35 7.35 0 0 0-.476 1.157 11.2 11.2 0 0 0-.301 1.34 14.1 14.1 0 0 0-.071 1.326c.01.696.094 1.378.252 2.046.155.65.385 1.282.69 1.895.304.613.682 1.205 1.137 1.776s.97 1.11 1.536 1.623c.51.464 1.053.882 1.622 1.253.57.371 1.171.692 1.8.961.63.269 1.285.474 1.966.615.681.141 1.385.204 2.112.189.919-.019 1.808-.168 2.668-.445.859-.277 1.68-.68 2.464-1.209.288-.194.557-.406.808-.636l.732-.673c.49-.45.735-.675.768-.901.033-.225-.13-.473-.456-.968l-3.213-4.887a.38.38 0 0 0-.528-.106l-.377.248c-.689.454-1.034.681-1.346.689s-.613-.205-1.216-.628l-.348-.244z"/>
+            </svg>
+            <span style="font-weight: bold; font-family: 'Roboto Mono', monospace;">Llámanos</span>
+        </a>
+    </div>
+
     <!-- VAPI Widget y Script -->
-    <vapi-widget public-key="f6773d0e-e805-4e8a-9999-fa0fa079ac3b" assistant-id="526377de-8d2b-4758-90e4-4418470de3a8"
-        mode="voice" theme="dark" base-bg-color="#000000" accent-color="#00F5FF" cta-button-color="#000000"
-        cta-button-text-color="#ffffff" border-radius="large" size="full" position="bottom-right" title="TALK WITH AI"
-        start-button-text="Start" end-button-text="End Call" chat-first-message="Hola, ¿en qué te puedo ayudar hoy?"
-        chat-placeholder="Escribe tu mensaje..." voice-show-transcript="true" consent-required="true"
+    <vapi-widget
+        id="vapi-widget-element"
+        public-key="f6773d0e-e805-4e8a-9999-fa0fa079ac3b"
+        assistant-id="526377de-8d2b-4758-90e4-4418470de3a8"
+        mode="voice"
+        theme="dark"
+        base-bg-color="#000000"
+        accent-color="#00F5FF"
+        cta-button-color="#000000"
+        cta-button-text-color="#ffffff"
+        border-radius="large"
+        size="full"
+        position="bottom-right"
+        title="TALK WITH AI"
+        start-button-text="Start"
+        end-button-text="End Call"
+        chat-first-message="Hola, ¿en qué te puedo ayudar hoy?"
+        chat-placeholder="Escribe tu mensaje..."
+        voice-show-transcript="true"
+        consent-required="true"
         consent-title="Términos y condiciones"
         consent-content="Al hacer clic en 'Aceptar', doy mi consentimiento para la grabación, almacenamiento e intercambio de mis comunicaciones con proveedores de servicios externos."
-        consent-storage-key="vapi_widget_consent">
+        consent-storage-key="vapi_widget_consent"
+    > 
     </vapi-widget>
-    <script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async
-        type="text/javascript"></script>
+    <script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async type="text/javascript"></script>
+    <script>
+        function vapiWidgetStart() {
+            // Intentar llamar al método start del widget
+            const widget = document.getElementById('vapi-widget-element');
+            if (widget && typeof widget.start === 'function') {
+                widget.start();
+            } else {
+                // Failsafe: Si no es una función, buscar el botón interno y hacerle click
+                const shadow = widget.shadowRoot;
+                const btn = shadow ? shadow.querySelector('button') : widget.querySelector('button');
+                if (btn) btn.click();
+            }
+        }
+    </script>
 
 
 
