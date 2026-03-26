@@ -744,23 +744,23 @@
             z-index: 9999;
         }
 
-        /* Ocultar el botón original de Vapi pero permitir que el UI sea visible al activarse */
+        /* Ocultar el launcher original de Vapi por completo */
         vapi-widget {
+            display: none !important;
+        }
+
+        /* Mostrar el widget y permitir interacciones sólo cuando esté activo */
+        vapi-widget.vapi-active {
+            display: block !important;
             position: fixed !important;
             bottom: 30px !important;
             right: 30px !important;
             width: 0 !important;
             height: 0 !important;
             overflow: visible !important;
-            z-index: 9998 !important;
-            pointer-events: none !important;
-            visibility: visible !important;
-            /* Asegurar que el contenido interno pueda verse */
-        }
-
-        /* Cuando el widget está activo o en llamada, permitir interacción */
-        vapi-widget.vapi-active {
+            z-index: 10001 !important; /* Por encima de otros botones cuando está activo */
             pointer-events: auto !important;
+            visibility: visible !important;
         }
 
         /* Estilo para los FABs de la izquierda */
@@ -830,7 +830,7 @@
     <vapi-widget id="vapi-widget-element" public-key="f6773d0e-e805-4e8a-9999-fa0fa079ac3b"
         assistant-id="526377de-8d2b-4758-90e4-4418470de3a8" mode="voice" theme="dark" base-bg-color="#000000"
         accent-color="#00F5FF" cta-button-color="#000000" cta-button-text-color="#ffffff" border-radius="large"
-        size="full" position="bottom-right" title="TALK WITH AI" start-button-text="Start" end-button-text="End Call"
+        size="full" position="bottom-right" title="NeuroBot" start-button-text="Start" end-button-text="End Call"
         chat-first-message="Hola, ¿en qué te puedo ayudar hoy?" chat-placeholder="Escribe tu mensaje..."
         voice-show-transcript="true" consent-required="true" consent-title="Términos y condiciones"
         consent-content="Al hacer clic en 'Aceptar', doy mi consentimiento para la grabación, almacenamiento e intercambio de mis comunicaciones con proveedores de servicios externos."
@@ -839,11 +839,12 @@
     <script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async
         type="text/javascript"></script>
     <script>
+        // Función para iniciar el widget de Vapi
         function vapiWidgetStart() {
             const widget = document.getElementById('vapi-widget-element');
             if (!widget) return;
 
-            // Asegurar que el widget sea interactivo y visible
+            // Mostrar el widget (vía clase CSS)
             widget.classList.add('vapi-active');
 
             // 1. Intentar via SDK Global (Recomendado por Vapi)
@@ -861,14 +862,7 @@
             // 3. Simulación de Click Exhaustiva (Shadow DOM & Light DOM)
             const tryClick = (root) => {
                 if (!root) return false;
-                // Buscar botones comunes en el widget de Vapi
-                const selectors = [
-                    'button', 
-                    '[role="button"]', 
-                    '.vapi-btn', 
-                    '[aria-label*="start" i]', 
-                    '[aria-label*="call" i]'
-                ];
+                const selectors = ['button', '[role="button"]', '.vapi-btn', '[aria-label*="start" i]', '[aria-label*="call" i]'];
                 for (let sel of selectors) {
                     const btn = root.querySelector(sel);
                     if (btn) {
@@ -879,13 +873,28 @@
                 return false;
             };
 
-            // Intentar en Light DOM, luego en Shadow DOM si existe
             if (!tryClick(widget)) {
-                if (widget.shadowRoot) {
-                    tryClick(widget.shadowRoot);
-                }
+                if (widget.shadowRoot) tryClick(widget.shadowRoot);
             }
         }
+
+        // Configurar listeners de Vapi una vez cargado
+        document.addEventListener('DOMContentLoaded', () => {
+            const widget = document.getElementById('vapi-widget-element');
+            if (!widget) return;
+
+            // Escuchar eventos de inicio y fin de llamada para manejar visibilidad
+            widget.addEventListener('call-start', () => {
+                widget.classList.add('vapi-active');
+            });
+
+            widget.addEventListener('call-end', () => {
+                widget.classList.remove('vapi-active');
+            });
+            
+            // También escuchar por eventos genéricos si los anteriores no disparan en algunas versiones
+            widget.addEventListener('speech-start', () => widget.classList.add('vapi-active'));
+        });
     </script>
 
 
